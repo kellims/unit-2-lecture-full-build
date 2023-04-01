@@ -11,7 +11,8 @@ router.post('/', async (req, res) => {
 // Index
 router.get('/', async (req, res) => {
 	const fruits = await Fruit.find({});
-	res.send(fruits);
+	// res.send(fruits);
+	res.render("fruits/index.ejs", {fruits});
 });
 
 // Seed
@@ -24,13 +25,15 @@ router.get('/seed', async (req, res) => {
 // Show
 router.get('/:id', async (req, res) => {
 	const fruit = await Fruit.findById(req.params.id);
-	res.send(fruit);
+	// res.send(fruit);
+	res.render("fruits/show.ejs", {fruit})
 });
 
 // Delete
 router.delete('/:id', async (req, res) => {
 	const fruit = await Fruit.findByIdAndDelete(req.params.id);
-	res.send({ success: true, fruit });
+	// res.send({ success: true, fruit });
+	res.redirect('/fruits');
 });
 
 // Update
